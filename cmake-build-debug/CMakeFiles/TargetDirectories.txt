@@ -1,0 +1,3 @@
+D:/Program Files/CLionProjects/laba5d/cmake-build-debug/CMakeFiles/laba5d.dir
+D:/Program Files/CLionProjects/laba5d/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/Program Files/CLionProjects/laba5d/cmake-build-debug/CMakeFiles/rebuild_cache.dir
