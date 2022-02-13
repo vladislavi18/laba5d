@@ -329,13 +329,17 @@ void task1(matrix m) {
     swapRows(m, maxIndex.rowIndex, minIndex.rowIndex);
 }
 
+void task2(matrix m) {
+    insertionSortRowsMatrixByRowCriteria(m, maxInRow);
+}
+
 int main() {
     test();
     matrix m = createMatrixFromArray((int[]) {1, 2, 3,
-                                              4, 5, 6,
-                                              7, 8, 9,
-                                              12, 1, 5}, 4, 3);
-    task1(m);
+                                              4, 18, 6,
+                                              7, 14, 9,
+                                              12, 13, 5}, 4, 3);
+    task2(m);
     outputMatrix(m);
     return 0;
 }
