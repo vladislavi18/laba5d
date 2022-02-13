@@ -333,13 +333,17 @@ void task2(matrix m) {
     insertionSortRowsMatrixByRowCriteria(m, maxInRow);
 }
 
+void task3(matrix m) {
+    insertionSortColsMatrixByColCriteria(m, minInCol);
+}
+
 int main() {
     test();
-    matrix m = createMatrixFromArray((int[]) {1, 2, 3,
+    matrix m = createMatrixFromArray((int[]) {7, 2, 1,
                                               4, 18, 6,
-                                              7, 14, 9,
+                                              7, 1, 9,
                                               12, 13, 5}, 4, 3);
-    task2(m);
+    task3(m);
     outputMatrix(m);
     return 0;
 }

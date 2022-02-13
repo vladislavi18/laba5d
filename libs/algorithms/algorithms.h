@@ -14,4 +14,6 @@ void insertionSort(int *a, size_t size);
 
 int maxInRow(int *a, int size);
 
+int minInCol(int *a, int size);
+
 #endif

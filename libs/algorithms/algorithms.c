@@ -48,3 +48,13 @@ int maxInRow(int *a, int size) {
     }
     return max;
 }
+
+int minInCol(int *a, int size) {
+    int min = a[0];
+    for (size_t i = 1; i < size; i++) {
+        if (a[i] <= min) {
+            min = a[i];
+        }
+    }
+    return min;
+}
