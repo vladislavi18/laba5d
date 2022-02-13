@@ -110,3 +110,99 @@ void insertionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int))
     free(criteriaArray);
     free(additionalArray);
 }
+
+bool isSquareMatrix(matrix m) {
+    return m.nRows == m.nCols;
+}
+
+bool twoMatricesEqual(matrix m1, matrix m2) {
+    if (m1.nRows != m2.nRows && m1.nCols != m2.nCols)
+        return false;
+    else {
+        bool isEqual = false;
+        for (size_t i = 0; i < m1.nRows; i++) {
+            for (size_t j = 0; j < m1.nCols; j++) {
+                isEqual = (bool) (m1.values[i][j] == m2.values[i][j]);
+                if (isEqual == 0)
+                    return false;
+            }
+        }
+        return isEqual;
+    }
+}
+
+bool isEMatrix(matrix m) {
+    bool isE = false;
+    for (size_t i = 0; i < m.nRows; i++) {
+        for (size_t j = 0; j < m.nCols; j++) {
+            if (i == j && m.values[i][j] == 1 || i != j && m.values[i][j] == 0)
+                isE = true;
+            else
+                return false;
+        }
+    }
+    return isE;
+}
+
+bool isSymmetricMatrix(matrix m) {
+    bool isSymmetric = false;
+    for (size_t i = 0; i < m.nRows; i++) {
+        for (size_t j = 0; j < m.nCols; j++) {
+            isSymmetric = (bool) (m.values[i][j] == m.values[j][i]);
+            if (isSymmetric == 0)
+                return false;
+        }
+    }
+    return isSymmetric;
+}
+
+void transposeSquareMatrix(matrix m) {
+    for (size_t i = 0; i < m.nRows; i++) {
+        for (size_t j = i + 1; j < m.nCols; j++) {
+            swap_(&m.values[i][j], &m.values[j][i], sizeof(int));
+        }
+    }
+}
+
+position getMinValuePos(matrix m) {
+    position minIndex = {0, 0};
+    int min = m.values[0][0];
+    for (int i = 0; i < m.nRows; i++) {
+        for (int j = 0; j < m.nCols; j++) {
+            if (m.values[i][j] < min) {
+                min = m.values[i][j];
+                minIndex = (position) {i, j};
+            }
+        }
+    }
+    return minIndex;
+}
+
+position getMaxValuePos(matrix m) {
+    position maxIndex = {0, 0};
+    int max = m.values[0][0];
+    for (int i = 0; i < m.nRows; i++) {
+        for (int j = 0; j < m.nCols; j++) {
+            if (m.values[i][j] > max) {
+                max = m.values[i][j];
+                maxIndex = (position) {i, j};
+            }
+        }
+    }
+    return maxIndex;
+}
+
+matrix *createArrayOfMatrixFromArray(const int *values,
+                                     size_t nMatrices, size_t nRows, size_t nCols) {
+
+
+    matrix *ms = getMemArrayOfMatrices(nMatrices, nRows, nCols);
+
+    int l = 0;
+    for (int k = 0; k < nMatrices; k++)
+        for (int i = 0; i < nRows; i++)
+            for (int j = 0; j < nCols; j++)
+                ms[k].values[i][j] = values[l++];
+
+    return ms;
+}
