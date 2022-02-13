@@ -323,7 +323,19 @@ void test() {
     test_swapRows();
 }
 
+void task1(matrix m) {
+    position maxIndex = getMaxValuePos(m);
+    position minIndex = getMinValuePos(m);
+    swapRows(m, maxIndex.rowIndex, minIndex.rowIndex);
+}
+
 int main() {
     test();
+    matrix m = createMatrixFromArray((int[]) {1, 2, 3,
+                                              4, 5, 6,
+                                              7, 8, 9,
+                                              12, 1, 5}, 4, 3);
+    task1(m);
+    outputMatrix(m);
     return 0;
 }

@@ -24,9 +24,3 @@ assert.h
 stdbool.h
 -
 
-D:/Program Files/CLionProjects/laba5d/main.c
-stdio.h
--
-libs/data_structures/matrix/matrix.h
-D:/Program Files/CLionProjects/laba5d/libs/data_structures/matrix/matrix.h
-
