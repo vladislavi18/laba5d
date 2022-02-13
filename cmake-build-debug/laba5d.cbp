@@ -74,6 +74,18 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="D:/Program Files/CLionProjects/laba5d/libs/algorithms/algorithms.c">
+			<Option target="laba5d"/>
+		</Unit>
+		<Unit filename="D:/Program Files/CLionProjects/laba5d/libs/algorithms/algorithms.h">
+			<Option target="laba5d"/>
+		</Unit>
+		<Unit filename="D:/Program Files/CLionProjects/laba5d/libs/data_structures/matrix/matrix.c">
+			<Option target="laba5d"/>
+		</Unit>
+		<Unit filename="D:/Program Files/CLionProjects/laba5d/libs/data_structures/matrix/matrix.h">
+			<Option target="laba5d"/>
+		</Unit>
 		<Unit filename="D:/Program Files/CLionProjects/laba5d/main.c">
 			<Option target="laba5d"/>
 		</Unit>

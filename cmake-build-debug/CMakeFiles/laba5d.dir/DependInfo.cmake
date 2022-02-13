@@ -8,6 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
+  "D:/Program Files/CLionProjects/laba5d/libs/algorithms/algorithms.c" "D:/Program Files/CLionProjects/laba5d/cmake-build-debug/CMakeFiles/laba5d.dir/libs/algorithms/algorithms.c.obj"
+  "D:/Program Files/CLionProjects/laba5d/libs/data_structures/matrix/matrix.c" "D:/Program Files/CLionProjects/laba5d/cmake-build-debug/CMakeFiles/laba5d.dir/libs/data_structures/matrix/matrix.c.obj"
   "D:/Program Files/CLionProjects/laba5d/main.c" "D:/Program Files/CLionProjects/laba5d/cmake-build-debug/CMakeFiles/laba5d.dir/main.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")

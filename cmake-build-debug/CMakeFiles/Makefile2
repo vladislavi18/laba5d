@@ -80,12 +80,12 @@ clean: CMakeFiles/laba5d.dir/clean
 CMakeFiles/laba5d.dir/all:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\laba5d.dir\build.make CMakeFiles/laba5d.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\laba5d.dir\build.make CMakeFiles/laba5d.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="D:\Program Files\CLionProjects\laba5d\cmake-build-debug\CMakeFiles" --progress-num=1,2 "Built target laba5d"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="D:\Program Files\CLionProjects\laba5d\cmake-build-debug\CMakeFiles" --progress-num=1,2,3,4 "Built target laba5d"
 .PHONY : CMakeFiles/laba5d.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/laba5d.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "D:\Program Files\CLionProjects\laba5d\cmake-build-debug\CMakeFiles" 2
+	$(CMAKE_COMMAND) -E cmake_progress_start "D:\Program Files\CLionProjects\laba5d\cmake-build-debug\CMakeFiles" 4
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 CMakeFiles/laba5d.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "D:\Program Files\CLionProjects\laba5d\cmake-build-debug\CMakeFiles" 0
 .PHONY : CMakeFiles/laba5d.dir/rule

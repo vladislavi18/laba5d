@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/laba5d.dir/libs/algorithms/algorithms.c.obj"
+  "CMakeFiles/laba5d.dir/libs/data_structures/matrix/matrix.c.obj"
   "CMakeFiles/laba5d.dir/main.c.obj"
   "laba5d.exe"
   "laba5d.exe.manifest"
