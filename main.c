@@ -370,12 +370,19 @@ matrix task5(matrix m) {
     return m;
 }
 
+bool task6(matrix m1, matrix m2) {
+    return (isEMatrix(mulMatrices(m1, m2)));
+}
+
 int main() {
     test();
-    matrix m = createMatrixFromArray((int[]) {7, 3, 2,
-                                              4, 18, 1,
-                                              13, 1, 8,}, 3, 3);
-    m = task5(m);
-    outputMatrix(m);
+    matrix m1 = createMatrixFromArray((int[]) {2, 5, 7,
+                                               6, 3, 4,
+                                               5, -2, -3,}, 3, 3);
+    matrix m2 = createMatrixFromArray((int[]) {1, -1, 1,
+                                               -38, 41, -34,
+                                               27, -29, 24,}, 3, 3);
+    printf("%d", task6(m1, m2));
+
     return 0;
 }
