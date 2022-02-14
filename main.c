@@ -344,12 +344,38 @@ matrix task4(matrix m) {
         return m;
 }
 
+int sumInArray(int *a, size_t size) {
+    int sum = 0;
+    for (size_t i = 0; i < size; i++) {
+        sum += a[i];
+    }
+    return sum;
+}
+
+bool isUnique(int *a, size_t size) {
+    for (size_t i = 1; i < size; i++) {
+        if (a[i - 1] == a[i])
+            return false;
+    }
+    return true;
+}
+
+matrix task5(matrix m) {
+    int sumArray[m.nRows];
+    for (size_t i = 0; i < m.nRows; i++) {
+        sumArray[i] = sumInArray(m.values[i], m.nCols);
+    }
+    if (isUnique(sumArray, m.nRows))
+        transposeSquareMatrix(m);
+    return m;
+}
+
 int main() {
     test();
-    matrix m = createMatrixFromArray((int[]) {7, 4, 7,
+    matrix m = createMatrixFromArray((int[]) {7, 3, 2,
                                               4, 18, 1,
-                                              7, 1, 9,}, 3, 3);
-    m = task4(m);
+                                              13, 1, 8,}, 3, 3);
+    m = task5(m);
     outputMatrix(m);
     return 0;
 }
