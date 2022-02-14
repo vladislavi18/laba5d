@@ -337,13 +337,19 @@ void task3(matrix m) {
     insertionSortColsMatrixByColCriteria(m, minInCol);
 }
 
+matrix task4(matrix m) {
+    if (isSymmetricMatrix(m))
+        return mulMatrices(m, m);
+    else
+        return m;
+}
+
 int main() {
     test();
-    matrix m = createMatrixFromArray((int[]) {7, 2, 1,
-                                              4, 18, 6,
-                                              7, 1, 9,
-                                              12, 13, 5}, 4, 3);
-    task3(m);
+    matrix m = createMatrixFromArray((int[]) {7, 4, 7,
+                                              4, 18, 1,
+                                              7, 1, 9,}, 3, 3);
+    m = task4(m);
     outputMatrix(m);
     return 0;
 }
