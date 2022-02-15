@@ -410,12 +410,35 @@ int task7(matrix m) {
     return sum;
 }
 
+int min2(int a, int b) {
+    return a < b ? a : b;
+}
+
+int task8(matrix m) {
+    position p = getMaxValuePos(m);
+    int min = m.values[p.rowIndex][p.colIndex];
+    int left = p.colIndex;
+    int right = p.colIndex;
+    for (int i = p.rowIndex - 1; i >= 0; i--) {
+        if (left - 1 >= 0)
+            left--;
+        if (right + 1 < m.nCols)
+            right++;
+        int duplicate = right;
+        while (duplicate >= left) {
+            min = min2(min, m.values[i][duplicate]);
+            duplicate--;
+        }
+    }
+    return min;
+}
+
 int main() {
     test();
-    matrix m = createMatrixFromArray((int[]) {3, 2, 5, 4,
-                                              5, 3, 6, 3,
-                                              3, 2, 1, 2}, 3, 4);
-    printf("%d", task7(m));
+    matrix m = createMatrixFromArray((int[]) {6, 8, 9, 2,
+                                              7, 12, 3, 4,
+                                              10, 11, 5, 1}, 3, 4);
+    printf("%d", task8(m));
 
     return 0;
 }
