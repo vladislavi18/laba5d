@@ -560,13 +560,49 @@ void swapPenultimateRow(matrix m) {
     memcpy(m.values[m.nRows - 2], col, sizeof(int) * m.nCols);
 }
 
+bool isNonDescendingSorted(int *a, size_t size) {
+    for (size_t i = 1; i < size; i++) {
+        if (a[i] < a[i - 1])
+            return false;
+    }
+    return true;
+}
+
+bool hasAllNonDescendingRows(matrix m) {
+    for (size_t i = 0; i < m.nRows; i++) {
+        if (!isNonDescendingSorted(m.values[i], m.nCols))
+            return false;
+    }
+    return true;
+}
+
+int countNonDescendingRowsMatrices(matrix *ms, int nMatrix) {
+    int numberRightMatrix = 0;
+    for (size_t i = 0; i < nMatrix; i++) {
+        numberRightMatrix += hasAllNonDescendingRows(ms[i]);
+    }
+    return numberRightMatrix;
+}
+
 int main() {
     test();
-    matrix m = createMatrixFromArray((int[]) {1, 5, 25,
-                                              2, 10, 6,
-                                              12, 2, 1}, 3, 3);
+    matrix *ms = createArrayOfMatrixFromArray(
+            (int[]) {
+                    7, 1,
+                    1, 1,
 
-    swapPenultimateRow(m);
-    outputMatrix(m);
+                    1, 6,
+                    2, 2,
+
+                    5, 4,
+                    2, 3,
+
+                    1, 3,
+                    7, 9
+            },
+            4, 2, 2);
+
+    assert(countNonDescendingRowsMatrices(ms, 4) == 2);
+
     return 0;
 }
