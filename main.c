@@ -517,12 +517,29 @@ int countEqClassesByRowsSum(matrix m) {
     return countNUnique(rowsSum, m.nRows);
 }
 
+int getNSpecialElement(matrix m) {
+    int nSpecial = 0;
+    for (size_t j = 0; j < m.nCols; j++) {
+        int specialElement = m.values[0][j];
+        int sumOfElementInCol = 0;
+        for (size_t i = 1; i < m.nRows; i++) {
+            if (m.values[i][j] > specialElement) {
+                sumOfElementInCol += specialElement;
+                specialElement = m.values[i][j];
+            } else
+                sumOfElementInCol += m.values[i][j];
+        }
+        if (specialElement > sumOfElementInCol)
+            nSpecial++;
+    }
+    return nSpecial;
+}
+
 int main() {
     test();
-    matrix m = createMatrixFromArray((int[]) {4, 3, 9,
-                                              3, 9, 1,
-                                              1, 1, 2,
-                                              12, 11, 13}, 4, 3);
-    printf("%d", countEqClassesByRowsSum(m));
+    matrix m = createMatrixFromArray((int[]) {3, 5, 25, 4,
+                                              2, 10, 6, 7,
+                                              12, 2, 1, 2}, 3, 4);
+    printf("%d", getNSpecialElement(m));
     return 0;
 }
