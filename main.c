@@ -486,13 +486,43 @@ void sortByDistance(matrix m) {
     insertionSortRowsMatrixByRowCriteriaF(m, getDistance);
 }
 
+int cmp_long_long(const void *pa, const void *pb) {
+    long long arg1 = *(const long long *) pa;
+    long long arg2 = *(const long long *) pb;
+
+    if (arg1 < arg2)
+        return -1;
+    if (arg1 > arg2)
+        return 1;
+    return 0;
+}
+
+int countNUnique(long long *a, int n) {
+    qsort(a, n, sizeof(long long), cmp_long_long);
+    int count = 1;
+    int i = 1;
+    while (i < n) {
+        if (a[i - 1] != a[i])
+            count++;
+        i++;
+    }
+    return count;
+}
+
+int countEqClassesByRowsSum(matrix m) {
+    long long rowsSum[m.nRows];
+    for (size_t i = 0; i < m.nRows; i++) {
+        rowsSum[i] = sumInArray(m.values[i], m.nCols);
+    }
+    return countNUnique(rowsSum, m.nRows);
+}
+
 int main() {
     test();
     matrix m = createMatrixFromArray((int[]) {4, 3, 9,
-                                              4, 2, 3,
+                                              3, 9, 1,
                                               1, 1, 2,
                                               12, 11, 13}, 4, 3);
-    sortByDistance(m);
-    outputMatrix(m);
+    printf("%d", countEqClassesByRowsSum(m));
     return 0;
 }
