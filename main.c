@@ -535,11 +535,38 @@ int getNSpecialElement(matrix m) {
     return nSpecial;
 }
 
+position getLeftMin(matrix m) {
+    int min = m.values[0][0];
+    position minPosition = {0, 0};
+    for (int i = 0; i < m.nRows; i++) {
+        for (int j = 0; j < m.nCols; j++) {
+            if (m.values[i][j] < min) {
+                min = m.values[i][j];
+                minPosition = (position) {i, j};
+            }
+        }
+    }
+    return minPosition;
+}
+
+void swapPenultimateRow(matrix m) {
+    if (m.nRows < 2)
+        printf("badCase");
+    position min = getLeftMin(m);
+    int col[m.nRows];
+    for (size_t i = 0; i < m.nRows; i++) {
+        col[i] = m.values[i][min.colIndex];
+    }
+    memcpy(m.values[m.nRows - 2], col, sizeof(int) * m.nCols);
+}
+
 int main() {
     test();
-    matrix m = createMatrixFromArray((int[]) {3, 5, 25, 4,
-                                              2, 10, 6, 7,
-                                              12, 2, 1, 2}, 3, 4);
-    printf("%d", getNSpecialElement(m));
+    matrix m = createMatrixFromArray((int[]) {1, 5, 25,
+                                              2, 10, 6,
+                                              12, 2, 1}, 3, 3);
+
+    swapPenultimateRow(m);
+    outputMatrix(m);
     return 0;
 }

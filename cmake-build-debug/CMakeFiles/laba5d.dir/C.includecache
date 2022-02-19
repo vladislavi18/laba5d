@@ -21,6 +21,8 @@ stdbool.h
 -
 math.h
 -
+memory.h
+-
 
 D:/Program Files/CLionProjects/laba5d/main.c
 stdio.h

@@ -5,6 +5,7 @@
 #include <assert.h>
 #include <stdbool.h>
 #include <math.h>
+#include <memory.h>
 
 typedef struct matrix {
     int **values; // элементы матрицы
