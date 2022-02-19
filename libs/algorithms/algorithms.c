@@ -39,7 +39,7 @@ void insertionSort(int *a, const size_t size) {
     }
 }
 
-int maxInRow(int *a, int size) {
+int maxInArray(int *a, int size) {
     int max = a[0];
     for (size_t i = 1; i < size; i++) {
         if (a[i] > max) {

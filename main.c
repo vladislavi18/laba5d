@@ -91,7 +91,7 @@ void test_insertionSortRowsMatrixByRowCriteria_Sort1() {
     matrix m = createMatrixFromArray((int[]) {4, 5, 6,
                                               7, 8, 9,
                                               1, 2, 3}, 3, 3);
-    insertionSortRowsMatrixByRowCriteria(m, maxInRow);
+    insertionSortRowsMatrixByRowCriteria(m, maxInArray);
     matrix expectedMatrix = createMatrixFromArray((int[]) {1, 2, 3,
                                                            4, 5, 6,
                                                            7, 8, 9}, 3, 3);
@@ -110,7 +110,7 @@ void test_insertionSortRowsMatrixByRowCriteria_Sort2() {
     matrix m = createMatrixFromArray((int[]) {7, 8, 9,
                                               13, 12, 4,
                                               7, 5, 8}, 3, 3);
-    insertionSortRowsMatrixByRowCriteria(m, maxInRow);
+    insertionSortRowsMatrixByRowCriteria(m, maxInArray);
     matrix expectedMatrix = createMatrixFromArray((int[]) {7, 5, 8,
                                                            7, 8, 9,
                                                            13, 12, 4}, 3, 3);
@@ -129,7 +129,7 @@ void test_insertionSortRowsMatrixByRowCriteria_Sort3() {
     matrix m = createMatrixFromArray((int[]) {7, 8, 9, 4,
                                               13, 12, 4, 19,
                                               7, 5, 8, 1}, 3, 4);
-    insertionSortRowsMatrixByRowCriteria(m, maxInRow);
+    insertionSortRowsMatrixByRowCriteria(m, maxInArray);
     matrix expectedMatrix = createMatrixFromArray((int[]) {7, 5, 8, 1,
                                                            7, 8, 9, 4,
                                                            13, 12, 4, 19}, 3, 4);
@@ -154,7 +154,7 @@ void test_insertionSortColsMatrixByColCriteria1() {
     matrix m = createMatrixFromArray((int[]) {1, 8, 4, 5,
                                               2, 9, 5, 6,
                                               3, 10, 6, 11}, 3, 4);
-    insertionSortColsMatrixByColCriteria(m, maxInRow);
+    insertionSortColsMatrixByColCriteria(m, maxInArray);
 
     matrix expectedMatrix = createMatrixFromArray((int[]) {1, 4, 8, 5,
                                                            2, 5, 9, 6,
@@ -174,7 +174,7 @@ void test_insertionSortColsMatrixByColCriteria2() {
     matrix m = createMatrixFromArray((int[]) {1, 8, 4, 5,
                                               10, 9, 8, 6,
                                               3, 11, 2, 7}, 3, 4);
-    insertionSortColsMatrixByColCriteria(m, maxInRow);
+    insertionSortColsMatrixByColCriteria(m, maxInArray);
 
     matrix expectedMatrix = createMatrixFromArray((int[]) {5, 4, 1, 8,
                                                            6, 8, 10, 9,
@@ -194,7 +194,7 @@ void test_insertionSortColsMatrixByColCriteria3() {
     matrix m = createMatrixFromArray((int[]) {1, 8, 4,
                                               10, 9, 8,
                                               3, 11, 2}, 3, 3);
-    insertionSortColsMatrixByColCriteria(m, maxInRow);
+    insertionSortColsMatrixByColCriteria(m, maxInArray);
 
     matrix expectedMatrix = createMatrixFromArray((int[]) {4, 1, 8,
                                                            8, 10, 9,
@@ -371,7 +371,7 @@ void task1(matrix m) {
 }
 
 void task2(matrix m) {
-    insertionSortRowsMatrixByRowCriteria(m, maxInRow);
+    insertionSortRowsMatrixByRowCriteria(m, maxInArray);
 }
 
 void task3(matrix m) {
@@ -584,25 +584,61 @@ int countNonDescendingRowsMatrices(matrix *ms, int nMatrix) {
     return numberRightMatrix;
 }
 
+int countValues(const int *a, size_t size, int value) {
+    int countValues = 0;
+    for (size_t i = 0; i < size; i++) {
+        if (a[i] == value)
+            countValues++;
+    }
+    return countValues;
+}
+
+int countZeroRows(matrix m) {
+    int countZeroRows = 0;
+    for (size_t i = 0; i < m.nRows; i++) {
+        if (countValues(m.values[i], m.nCols, 0) == m.nCols)
+            countZeroRows++;
+    }
+    return countZeroRows;
+}
+
+void printMatrixWithMaxZeroRows(matrix *ms, int nMatrix) {
+    int maxZeroInMatrix[nMatrix];
+    for (size_t i = 0; i < nMatrix; i++) {
+        maxZeroInMatrix[i] = countZeroRows(ms[i]);
+    }
+    int max = maxInArray(maxZeroInMatrix, nMatrix);
+    for (int i = 0; i < nMatrix; i++)
+        if (maxZeroInMatrix[i] == max)
+            outputMatrix(ms[i]);
+}
+
 int main() {
     test();
     matrix *ms = createArrayOfMatrixFromArray(
             (int[]) {
-                    7, 1,
+                    0, 1,
+                    1, 0,
+                    0, 0,
+
+                    1, 1,
+                    2, 1,
                     1, 1,
 
-                    1, 6,
-                    2, 2,
+                    0, 0,
+                    0, 0,
+                    4, 7,
 
-                    5, 4,
-                    2, 3,
+                    0, 0,
+                    0, 1,
+                    0, 0,
 
-                    1, 3,
-                    7, 9
+                    0, 1,
+                    0, 2,
+                    0, 3
             },
-            4, 2, 2);
+            5, 3, 2);
 
-    assert(countNonDescendingRowsMatrices(ms, 4) == 2);
-
+    printMatrixWithMaxZeroRows(ms, 5);
     return 0;
 }

@@ -12,7 +12,7 @@ void swap_(void *a, void *b, size_t size);
 
 void insertionSort(int *a, size_t size);
 
-int maxInRow(int *a, int size);
+int maxInArray(int *a, int size);
 
 int minInCol(int *a, int size);
 
