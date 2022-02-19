@@ -6,11 +6,19 @@
 
 #IncludeRegexTransform: 
 
+D:/Program Files/CLionProjects/laba5d/libs/algorithms/algorithms.c
+algorithms.h
+D:/Program Files/CLionProjects/laba5d/libs/algorithms/algorithms.h
+
 D:/Program Files/CLionProjects/laba5d/libs/algorithms/algorithms.h
 stdio.h
 -
 stdlib.h
 -
+
+D:/Program Files/CLionProjects/laba5d/libs/data_structures/matrix/matrix.c
+matrix.h
+D:/Program Files/CLionProjects/laba5d/libs/data_structures/matrix/matrix.h
 
 D:/Program Files/CLionProjects/laba5d/libs/data_structures/matrix/matrix.h
 ../../algorithms/algorithms.h

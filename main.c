@@ -375,7 +375,7 @@ void task2(matrix m) {
 }
 
 void task3(matrix m) {
-    insertionSortColsMatrixByColCriteria(m, minInCol);
+    insertionSortColsMatrixByColCriteria(m, minInArray);
 }
 
 matrix task4(matrix m) {
@@ -613,32 +613,54 @@ void printMatrixWithMaxZeroRows(matrix *ms, int nMatrix) {
             outputMatrix(ms[i]);
 }
 
+int maxInMatrix(matrix m) {
+    int norm = abs(m.values[0][0]);
+    for (size_t i = 0; i < m.nRows; i++) {
+        int max = abs(maxInArray(m.values[i], m.nCols));
+        if (norm < max)
+            norm = max;
+    }
+    return norm;
+}
+
+void printMatricesWithMinNorm(matrix *ms, int nMatrix) {
+    int normInMatrices[nMatrix];
+    for (size_t i = 0; i < nMatrix; i++) {
+        normInMatrices[i] = maxInMatrix(ms[i]);
+    }
+    int min = minInArray(normInMatrices, nMatrix);
+    for (size_t i = 0; i < nMatrix; i++) {
+        if (normInMatrices[i] == min)
+            outputMatrix(ms[i]);
+    }
+}
+
 int main() {
     test();
     matrix *ms = createArrayOfMatrixFromArray(
             (int[]) {
-                    0, 1,
-                    1, 0,
-                    0, 0,
+                    0, 1, 0,
+                    1, 0, 0,
+                    0, 0, 0,
 
-                    1, 1,
-                    2, 1,
-                    1, 1,
+                    1, 1, 0,
+                    2, 1, 0,
+                    1, 1, 0,
 
-                    0, 0,
-                    0, 0,
-                    4, 7,
+                    0, 0, 0,
+                    0, 1, 0,
+                    4, 7, 0,
 
-                    0, 0,
-                    0, 1,
-                    0, 0,
+                    1, 0, 0,
+                    0, 1, 0,
+                    0, 0, 0,
 
-                    0, 1,
-                    0, 2,
-                    0, 3
+                    0, 1, 0,
+                    0, 2, 0,
+                    0, 3, 0
             },
-            5, 3, 2);
+            5, 3, 3);
 
-    printMatrixWithMaxZeroRows(ms, 5);
+    printMatricesWithMinNorm(ms, 5);
     return 0;
 }
