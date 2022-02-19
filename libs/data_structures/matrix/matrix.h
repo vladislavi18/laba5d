@@ -4,6 +4,7 @@
 #include "../../algorithms/algorithms.h"
 #include <assert.h>
 #include <stdbool.h>
+#include <math.h>
 
 typedef struct matrix {
     int **values; // элементы матрицы
@@ -98,5 +99,7 @@ matrix *createArrayOfMatrixFromArray(const int *values,
                                      size_t nMatrices, size_t nRows, size_t nCols);
 
 matrix mulMatrices(matrix m1, matrix m2);
+
+void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (*criteria)(int *, int));
 
 #endif

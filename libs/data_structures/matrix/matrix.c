@@ -220,3 +220,17 @@ matrix mulMatrices(matrix m1, matrix m2) {
     }
     return (matrix) newMatrix;
 }
+
+void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (*criteria)(int *, int)) {
+    float *criteriaArray = (float *) malloc(sizeof(float) * m.nRows);
+    for (int i = 0; i < m.nRows; ++i) {
+        criteriaArray[i] = criteria(m.values[i], m.nCols);
+    }
+    for (int i = 0; i < m.nRows; ++i) {
+        for (int j = i; j > 0 && criteriaArray[j - 1] > criteriaArray[j]; j--) {
+            swap_(&criteriaArray[j - 1], &criteriaArray[j], sizeof(float));
+            swapRows(m, j, j - 1);
+        }
+    }
+    free(criteriaArray);
+}

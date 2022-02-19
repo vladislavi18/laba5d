@@ -125,9 +125,29 @@ void test_insertionSortRowsMatrixByRowCriteria_Sort2() {
     }
 }
 
+void test_insertionSortRowsMatrixByRowCriteria_Sort3() {
+    matrix m = createMatrixFromArray((int[]) {7, 8, 9, 4,
+                                              13, 12, 4, 19,
+                                              7, 5, 8, 1}, 3, 4);
+    insertionSortRowsMatrixByRowCriteria(m, maxInRow);
+    matrix expectedMatrix = createMatrixFromArray((int[]) {7, 5, 8, 1,
+                                                           7, 8, 9, 4,
+                                                           13, 12, 4, 19}, 3, 4);
+    assert(m.nRows == expectedMatrix.nRows);
+    assert(m.nCols == expectedMatrix.nCols);
+    bool isEqual = false;
+    for (size_t i = 0; i < m.nRows; i++) {
+        for (size_t j = 0; j < m.nCols; j++) {
+            isEqual = (bool) (m.values[i][j] == expectedMatrix.values[i][j]);
+            assert(isEqual == true);
+        }
+    }
+}
+
 void test_insertionSortRowsMatrixByRowCriteria() {
     test_insertionSortRowsMatrixByRowCriteria_Sort1();
     test_insertionSortRowsMatrixByRowCriteria_Sort2();
+    test_insertionSortRowsMatrixByRowCriteria_Sort3();
 }
 
 void test_insertionSortColsMatrixByColCriteria1() {
@@ -170,9 +190,30 @@ void test_insertionSortColsMatrixByColCriteria2() {
     }
 }
 
+void test_insertionSortColsMatrixByColCriteria3() {
+    matrix m = createMatrixFromArray((int[]) {1, 8, 4,
+                                              10, 9, 8,
+                                              3, 11, 2}, 3, 3);
+    insertionSortColsMatrixByColCriteria(m, maxInRow);
+
+    matrix expectedMatrix = createMatrixFromArray((int[]) {4, 1, 8,
+                                                           8, 10, 9,
+                                                           2, 3, 11}, 3, 3);
+    assert(m.nRows == expectedMatrix.nRows);
+    assert(m.nCols == expectedMatrix.nCols);
+    bool isEqual = false;
+    for (size_t i = 0; i < m.nRows; i++) {
+        for (size_t j = 0; j < m.nCols; j++) {
+            isEqual = (bool) (m.values[i][j] == expectedMatrix.values[i][j]);
+            assert(isEqual == true);
+        }
+    }
+}
+
 void test_insertionSortColsMatrixByColCriteria() {
     test_insertionSortColsMatrixByColCriteria1();
     test_insertionSortColsMatrixByColCriteria2();
+    test_insertionSortColsMatrixByColCriteria3();
 }
 
 void test_twoMatricesEqual_NotEqualnCols() {
@@ -433,12 +474,25 @@ int task8(matrix m) {
     return min;
 }
 
+float getDistance(int *a, int size) {
+    int distance = 0;
+    for (size_t i = 0; i < size; i++) {
+        distance += a[i];
+    }
+    return sqrtf(distance);
+}
+
+void sortByDistance(matrix m) {
+    insertionSortRowsMatrixByRowCriteriaF(m, getDistance);
+}
+
 int main() {
     test();
-    matrix m = createMatrixFromArray((int[]) {6, 8, 9, 2,
-                                              7, 12, 3, 4,
-                                              10, 11, 5, 1}, 3, 4);
-    printf("%d", task8(m));
-
+    matrix m = createMatrixFromArray((int[]) {4, 3, 9,
+                                              4, 2, 3,
+                                              1, 1, 2,
+                                              12, 11, 13}, 4, 3);
+    sortByDistance(m);
+    outputMatrix(m);
     return 0;
 }
