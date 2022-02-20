@@ -101,11 +101,13 @@ void insertionSortColsMatrixByColCriteria(matrix m, int (*criteria)(int *, int))
             additionalArray[j] = m.values[j][i];
         criteriaArray[i] = criteria(additionalArray, m.nRows);
     }
-    for (int i = 0; i < m.nCols; ++i) {
-        for (int j = i; j > 0 && criteriaArray[j - 1] > criteriaArray[j]; j--) {
-            swap_(&criteriaArray[j - 1], &criteriaArray[j], sizeof(int));
-            swapColumns(m, j, j - 1);
-        }
+    for (int i = 0; i < m.nCols - 1; ++i) {
+        int minPos = i;
+        for (int j = i + 1; j < m.nCols; j++)
+            if (criteriaArray[j] < criteriaArray[minPos])
+                minPos = j;
+        swap(&criteriaArray[i], &criteriaArray[minPos]);
+        swapColumns(m, i, minPos);
     }
     free(criteriaArray);
     free(additionalArray);
@@ -147,7 +149,7 @@ bool isEMatrix(matrix m) {
 bool isSymmetricMatrix(matrix m) {
     bool isSymmetric = false;
     for (size_t i = 0; i < m.nRows; i++) {
-        for (size_t j = 0; j < m.nCols; j++) {
+        for (size_t j = i + 1; j < m.nCols; j++) {
             isSymmetric = (bool) (m.values[i][j] == m.values[j][i]);
             if (isSymmetric == 0)
                 return false;

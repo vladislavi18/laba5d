@@ -58,3 +58,9 @@ int minInArray(int *a, int size) {
     }
     return min;
 }
+
+void swap(int *a, int *b) {
+    int t = *a;
+    *a = *b;
+    *b = t;
+}

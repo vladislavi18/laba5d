@@ -412,7 +412,10 @@ matrix task5(matrix m) {
 }
 
 bool task6(matrix m1, matrix m2) {
-    return (isEMatrix(mulMatrices(m1, m2)));
+    matrix mulMatrix = mulMatrices(m1, m2);
+    bool EMatrix = isEMatrix(mulMatrix);
+    freeMemMatrix(mulMatrix);
+    return EMatrix;
 }
 
 int max2(int a, int b) {
@@ -420,34 +423,19 @@ int max2(int a, int b) {
 }
 
 int task7(matrix m) {
-    int sumArray[m.nCols + m.nRows - 2];
-    int k = 0;
-    for (size_t i = 1, j = 0; i < m.nRows; i++, j++) {
-        int max = m.values[i][0];
-        int duplicate = i;
-        while (i + 1 < m.nRows && j + 1 < m.nCols) {
-            j++;
-            i++;
-            max = max2(max, m.values[i][j]);
-        }
-        sumArray[k++] = max;
-        j = 0;
-        i = duplicate;
+    int sizeSumArray = m.nCols + m.nRows - 1;
+    int sumArray[sizeSumArray];
+    for (size_t i = 0; i < sizeSumArray; i++) {
+        sumArray[i] = 0;
     }
-
-    for (size_t i = 1, j = 0; i < m.nCols; i++, j++) {
-        int max = m.values[0][i];
-        int duplicate = i;
-        while (i + 1 < m.nCols && j + 1 < m.nRows) {
-            j++;
-            i++;
-            max = max2(max, m.values[j][i]);
+    for (size_t i = 0; i < m.nRows; i++) {
+        for (size_t j = 0; j < m.nCols; j++) {
+            if (i == j)
+                continue;
+            sumArray[j - i + 2] = max2(sumArray[j - i + 2], m.values[i][j]);
         }
-        sumArray[k++] = max;
-        j = 0;
-        i = duplicate;
     }
-    int sum = sumInArray(sumArray, m.nRows + m.nCols - 2);
+    int sum = sumInArray(sumArray, m.nRows + m.nCols - 1);
     return sum;
 }
 
@@ -492,9 +480,10 @@ int cmp_long_long(const void *pa, const void *pb) {
 
     if (arg1 < arg2)
         return -1;
-    if (arg1 > arg2)
+    else if (arg1 > arg2)
         return 1;
-    return 0;
+    else
+        return 0;
 }
 
 int countNUnique(long long *a, int n) {
@@ -637,30 +626,10 @@ void printMatricesWithMinNorm(matrix *ms, int nMatrix) {
 
 int main() {
     test();
-    matrix *ms = createArrayOfMatrixFromArray(
-            (int[]) {
-                    0, 1, 0,
-                    1, 0, 0,
-                    0, 0, 0,
+    matrix m = createMatrixFromArray((int[]) {3, 2, 5, 4,
+                                              1, 3, 6, 3,
+                                              3, 2, 1, 2}, 3, 4);
 
-                    1, 1, 0,
-                    2, 1, 0,
-                    1, 1, 0,
-
-                    0, 0, 0,
-                    0, 1, 0,
-                    4, 7, 0,
-
-                    1, 0, 0,
-                    0, 1, 0,
-                    0, 0, 0,
-
-                    0, 1, 0,
-                    0, 2, 0,
-                    0, 3, 0
-            },
-            5, 3, 3);
-
-    printMatricesWithMinNorm(ms, 5);
+    printf("%d", task7(m));
     return 0;
 }

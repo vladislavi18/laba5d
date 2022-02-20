@@ -16,4 +16,6 @@ int maxInArray(int *a, int size);
 
 int minInArray(int *a, int size);
 
+void swap(int *a, int *b);
+
 #endif
