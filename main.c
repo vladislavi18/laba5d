@@ -18,6 +18,8 @@ void test_swapRows_changeFirstAndSecondRows() {
             assert(isEqual == true);
         }
     }
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 void test_swapRows_changeFirstAndThirdRows() {
@@ -37,6 +39,8 @@ void test_swapRows_changeFirstAndThirdRows() {
             assert(isEqual == true);
         }
     }
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 void test_swapRows() {
@@ -61,6 +65,8 @@ void test_swapCols_changeFirstAndThirdCols() {
             assert(isEqual == true);
         }
     }
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 void test_swapCols_changeFirstAndSecondCols() {
@@ -80,6 +86,8 @@ void test_swapCols_changeFirstAndSecondCols() {
             assert(isEqual == true);
         }
     }
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 void test_swapCols() {
@@ -104,6 +112,8 @@ void test_insertionSortRowsMatrixByRowCriteria_Sort1() {
             assert(isEqual == true);
         }
     }
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 void test_insertionSortRowsMatrixByRowCriteria_Sort2() {
@@ -123,6 +133,8 @@ void test_insertionSortRowsMatrixByRowCriteria_Sort2() {
             assert(isEqual == true);
         }
     }
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 void test_insertionSortRowsMatrixByRowCriteria_Sort3() {
@@ -142,6 +154,8 @@ void test_insertionSortRowsMatrixByRowCriteria_Sort3() {
             assert(isEqual == true);
         }
     }
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 void test_insertionSortRowsMatrixByRowCriteria() {
@@ -154,7 +168,7 @@ void test_insertionSortColsMatrixByColCriteria1() {
     matrix m = createMatrixFromArray((int[]) {1, 8, 4, 5,
                                               2, 9, 5, 6,
                                               3, 10, 6, 11}, 3, 4);
-    insertionSortColsMatrixByColCriteria(m, maxInArray);
+    selectionSortColsMatrixByColCriteria(m, maxInArray);
 
     matrix expectedMatrix = createMatrixFromArray((int[]) {1, 4, 8, 5,
                                                            2, 5, 9, 6,
@@ -168,13 +182,15 @@ void test_insertionSortColsMatrixByColCriteria1() {
             assert(isEqual == true);
         }
     }
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 void test_insertionSortColsMatrixByColCriteria2() {
     matrix m = createMatrixFromArray((int[]) {1, 8, 4, 5,
                                               10, 9, 8, 6,
                                               3, 11, 2, 7}, 3, 4);
-    insertionSortColsMatrixByColCriteria(m, maxInArray);
+    selectionSortColsMatrixByColCriteria(m, maxInArray);
 
     matrix expectedMatrix = createMatrixFromArray((int[]) {5, 4, 1, 8,
                                                            6, 8, 10, 9,
@@ -188,13 +204,15 @@ void test_insertionSortColsMatrixByColCriteria2() {
             assert(isEqual == true);
         }
     }
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 void test_insertionSortColsMatrixByColCriteria3() {
     matrix m = createMatrixFromArray((int[]) {1, 8, 4,
                                               10, 9, 8,
                                               3, 11, 2}, 3, 3);
-    insertionSortColsMatrixByColCriteria(m, maxInArray);
+    selectionSortColsMatrixByColCriteria(m, maxInArray);
 
     matrix expectedMatrix = createMatrixFromArray((int[]) {4, 1, 8,
                                                            8, 10, 9,
@@ -208,6 +226,8 @@ void test_insertionSortColsMatrixByColCriteria3() {
             assert(isEqual == true);
         }
     }
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 void test_insertionSortColsMatrixByColCriteria() {
@@ -224,6 +244,8 @@ void test_twoMatricesEqual_NotEqualnCols() {
                                                5, 6, 7, 8,
                                                9, 10, 11, 12}, 3, 4);
     assert(!twoMatricesEqual(m1, m2));
+    freeMemMatrix(m1);
+    freeMemMatrix(m2);
 }
 
 void test_twoMatricesEqual_NotEqualnRows() {
@@ -235,6 +257,8 @@ void test_twoMatricesEqual_NotEqualnRows() {
                                                7, 8, 9,
                                                10, 11, 12}, 4, 3);
     assert(twoMatricesEqual(m1, m2));
+    freeMemMatrix(m1);
+    freeMemMatrix(m2);
 }
 
 void test_twoMatricesEqual_Equal() {
@@ -245,6 +269,8 @@ void test_twoMatricesEqual_Equal() {
                                                4, 5, 6,
                                                7, 8, 9}, 3, 3);
     assert(twoMatricesEqual(m1, m2));
+    freeMemMatrix(m1);
+    freeMemMatrix(m2);
 }
 
 void test_twoMatricesEqual_NotEqual() {
@@ -255,6 +281,8 @@ void test_twoMatricesEqual_NotEqual() {
                                                4, 5, 6,
                                                7, 8, 9}, 3, 3);
     assert(!twoMatricesEqual(m1, m2));
+    freeMemMatrix(m1);
+    freeMemMatrix(m2);
 }
 
 void test_twoMatricesEqual() {
@@ -269,6 +297,8 @@ void test_isEMatrix_EMatrix() {
                                               0, 1, 0,
                                               0, 0, 1}, 3, 3);
     assert(isEMatrix(m));
+
+    freeMemMatrix(m);
 }
 
 void test_isEMatrix_NotEMatrix() {
@@ -276,6 +306,8 @@ void test_isEMatrix_NotEMatrix() {
                                               0, 1, 0,
                                               0, 0, 1}, 3, 3);
     assert(!isEMatrix(m));
+
+    freeMemMatrix(m);
 }
 
 void test_isEMatrix() {
@@ -288,6 +320,7 @@ void test_isSymmetricMatrix_isSymmetric() {
                                               6, 1, 3,
                                               10, 3, 1}, 3, 3);
     assert(isSymmetricMatrix(m));
+    freeMemMatrix(m);
 }
 
 void test_isSymmetricMatrix_isNotSymmetric() {
@@ -295,6 +328,7 @@ void test_isSymmetricMatrix_isNotSymmetric() {
                                               6, 1, 3,
                                               10, 6, 1}, 3, 3);
     assert(!isSymmetricMatrix(m));
+    freeMemMatrix(m);
 }
 
 void test_isSymmetricMatrix() {
@@ -312,6 +346,8 @@ void test_transposeSquareMatrix_isTransposeTrue() {
                                                            8, 9, 11,
                                                            4, 8, 2}, 3, 3);
     assert(twoMatricesEqual(m, expectedMatrix));
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 void test_transposeSquareMatrix_isTransposeFalse() {
@@ -324,6 +360,8 @@ void test_transposeSquareMatrix_isTransposeFalse() {
                                                            10, 9, 11,
                                                            4, 8, 2}, 3, 3);
     assert(!twoMatricesEqual(m, expectedMatrix));
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 void test_transposeSquareMatrix() {
@@ -339,6 +377,7 @@ void test_getMinValuePos() {
     position minPos = getMinValuePos(m);
     assert(minPos.rowIndex == expectedMinPos.rowIndex);
     assert(minPos.colIndex == expectedMinPos.colIndex);
+    freeMemMatrix(m);
 }
 
 void test_getMaxValuePos() {
@@ -349,6 +388,7 @@ void test_getMaxValuePos() {
     position maxPos = getMaxValuePos(m);
     assert(maxPos.rowIndex == expectedMaxPos.rowIndex);
     assert(maxPos.colIndex == expectedMaxPos.colIndex);
+    freeMemMatrix(m);
 }
 
 void testFunction() {
@@ -379,6 +419,8 @@ void test_task1() {
                                                            4, 5, 6,
                                                            1, 2, 3}, 3, 3);
     assert(twoMatricesEqual(m, expectedMatrix));
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 void task2(matrix m) {
@@ -394,10 +436,12 @@ void test_task2() {
                                                            7, 1, 2,
                                                            1, 8, 1}, 3, 3);
     assert(twoMatricesEqual(m, expectedMatrix));
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 void task3(matrix m) {
-    insertionSortColsMatrixByColCriteria(m, minInArray);
+    selectionSortColsMatrixByColCriteria(m, minInArray);
 }
 
 void test_task3() {
@@ -409,6 +453,8 @@ void test_task3() {
                                                            5, 1, 2, 2, 7, 8,
                                                            1, 4, 6, 8, 3, 4}, 3, 6);
     assert(twoMatricesEqual(m, expectedMatrix));
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 matrix task4(matrix m) {
@@ -428,6 +474,8 @@ void test_task4_MatrixIsSymmetric() {
                                                            37, 189, 302}, 3, 3);
 
     assert(twoMatricesEqual(m, expectedMatrix));
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 void test_task4_MatrixIsNotSymmetric() {
@@ -440,6 +488,8 @@ void test_task4_MatrixIsNotSymmetric() {
                                                            8, 17, 3}, 3, 3);
 
     assert(twoMatricesEqual(m, expectedMatrix));
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 void test_task4() {
@@ -483,6 +533,8 @@ void test_task5_SumsNotEqual() {
                                                            4, 17, 3}, 3, 3);
 
     assert(twoMatricesEqual(m, expectedMatrix));
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 void test_task5_SumsEqual() {
@@ -495,6 +547,8 @@ void test_task5_SumsEqual() {
                                                            23, 47, 3}, 3, 3);
 
     assert(twoMatricesEqual(m, expectedMatrix));
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 void test_task5() {
@@ -519,6 +573,8 @@ void test_task6_IsEMatrix() {
                                                27, -29, 24}, 3, 3);
 
     assert(task6(m1, m2) == true);
+    freeMemMatrix(m1);
+    freeMemMatrix(m2);
 }
 
 void test_task6_IsNotEMatrix() {
@@ -531,6 +587,8 @@ void test_task6_IsNotEMatrix() {
                                                27, -27, 24}, 3, 3);
 
     assert(task6(m1, m2) == false);
+    freeMemMatrix(m1);
+    freeMemMatrix(m2);
 }
 
 void test_task6() {
@@ -564,6 +622,7 @@ void test_task7() {
                                               1, 3, 6, 3,
                                               3, 2, 1, 2}, 3, 4);
     assert(task7(m) == 20);
+    freeMemMatrix(m);
 }
 
 int min2(int a, int b) {
@@ -595,6 +654,7 @@ void test_task8_NormArea() {
                                               10, 11, 5, 1}, 3, 4);
 
     assert(task8(m) == 6);
+    freeMemMatrix(m);
 }
 
 void test_task8_singleElementArea() {
@@ -603,6 +663,7 @@ void test_task8_singleElementArea() {
                                               4, 1, 12, 2}, 3, 4);
 
     assert(task8(m) == 17);
+    freeMemMatrix(m);
 }
 
 void test_task8() {
@@ -631,7 +692,8 @@ void test_task9() {
                                                            3, 11, 8, 9,
                                                            17, 7, 5, 6}, 3, 4);
     assert(twoMatricesEqual(m, expectedMatrix));
-
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 int cmp_long_long(const void *pa, const void *pb) {
@@ -678,7 +740,7 @@ void test_task10_() {
                                               8, 0}, 6, 2);
 
     assert(countEqClassesByRowsSum(m) == 3);
-
+    freeMemMatrix(m);
 }
 
 void test_task10_allSumsIsEqual() {
@@ -690,7 +752,7 @@ void test_task10_allSumsIsEqual() {
                                               8, 0}, 6, 2);
 
     assert(countEqClassesByRowsSum(m) == 1);
-
+    freeMemMatrix(m);
 }
 
 void test_task10() {
@@ -722,7 +784,7 @@ void test_task11_thereElements() {
                                               12, 2, 1, 2}, 3, 4);
 
     assert(getNSpecialElement(m) == 2);
-
+    freeMemMatrix(m);
 }
 
 void test_task11_zeroSpecialElements() {
@@ -731,7 +793,7 @@ void test_task11_zeroSpecialElements() {
                                               4, 2, 1, 2}, 3, 4);
 
     assert(getNSpecialElement(m) == 0);
-
+    freeMemMatrix(m);
 }
 
 void test_task11() {
@@ -773,7 +835,8 @@ void test_task12() {
                                                            1, 4, 7,
                                                            7, 8, 1}, 3, 3);
     assert(twoMatricesEqual(m, expectedMatrix));
-
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
 }
 
 bool isNonDescendingSorted(int *a, size_t size) {
@@ -818,6 +881,7 @@ void test_task13() {
             4, 2, 2);
 
     assert(countNonDescendingRowsMatrices(ms, 4) == 2);
+    freeMemMatrices(ms, 4);
 }
 
 int countValues(const int *a, size_t size, int value) {
@@ -859,6 +923,7 @@ void test_countZeroRows() {
             3, 2);
 
     assert(countZeroRows(m) == 2);
+    freeMemMatrix(m);
 }
 
 int maxInMatrix(matrix m) {
@@ -900,8 +965,12 @@ void test_tasks() {
     test_countZeroRows();
 }
 
-int main() {
+void test() {
     testFunction();
     test_tasks();
+}
+
+int main() {
+    test();
     return 0;
 }

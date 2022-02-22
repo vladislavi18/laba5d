@@ -60,7 +60,7 @@ void insertionSortRowsMatrixByRowCriteria(matrix m,
 
 //выполняет сортировку вставками
 //столбцов матрицы m по неубыванию значения функции criteria применяемой для столбцов
-void insertionSortColsMatrixByColCriteria(matrix m,
+void selectionSortColsMatrixByColCriteria(matrix m,
                                           int (*criteria)(int *, int));
 
 //возвращает значение ’истина’, если
@@ -99,8 +99,12 @@ matrix createMatrixFromArray(const int *a,
 matrix *createArrayOfMatrixFromArray(const int *values,
                                      size_t nMatrices, size_t nRows, size_t nCols);
 
+// перемножает две матрицы m1 и m2
 matrix mulMatrices(matrix m1, matrix m2);
 
+//выполняет сортировку вставками
+//столбцов матрицы m по неубыванию значения функции
+// criteria применяемой для строк, для элементов типа float
 void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (*criteria)(int *, int));
 
 #endif
