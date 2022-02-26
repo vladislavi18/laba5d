@@ -506,9 +506,11 @@ int sumInArray(int *a, size_t size) {
 }
 
 bool isUnique(int *a, size_t size) {
+    selectionSort(a, size);
     for (size_t i = 1; i < size; i++) {
-        if (a[i - 1] == a[i])
+        if (a[i - 1] == a[i]) {
             return false;
+        }
     }
     return true;
 }
@@ -551,9 +553,24 @@ void test_task5_SumsEqual() {
     freeMemMatrix(expectedMatrix);
 }
 
+void test_task5_TwoSumsEqual() {
+    matrix m = createMatrixFromArray((int[]) {10, 13, 3,
+                                              1, 7, 17,
+                                              23, 2, 1}, 3, 3);
+    task5(m);
+    matrix expectedMatrix = createMatrixFromArray((int[]) {10, 13, 3,
+                                                           1, 7, 17,
+                                                           23, 2, 1}, 3, 3);
+
+    assert(twoMatricesEqual(m, expectedMatrix));
+    freeMemMatrix(m);
+    freeMemMatrix(expectedMatrix);
+}
+
 void test_task5() {
     test_task5_SumsNotEqual();
     test_task5_SumsEqual();
+    test_task5_TwoSumsEqual();
 }
 
 bool task6(matrix m1, matrix m2) {
@@ -694,18 +711,6 @@ void test_task9() {
     assert(twoMatricesEqual(m, expectedMatrix));
     freeMemMatrix(m);
     freeMemMatrix(expectedMatrix);
-}
-
-int cmp_long_long(const void *pa, const void *pb) {
-    long long arg1 = *(const long long *) pa;
-    long long arg2 = *(const long long *) pb;
-
-    if (arg1 < arg2)
-        return -1;
-    else if (arg1 > arg2)
-        return 1;
-    else
-        return 0;
 }
 
 int countNUnique(long long *a, int n) {

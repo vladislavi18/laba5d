@@ -18,4 +18,8 @@ int minInArray(int *a, int size);
 
 void swap(int *a, int *b);
 
+int cmp_long_long(const void *pa, const void *pb);
+
+void selectionSort(int *a, size_t size);
+
 #endif

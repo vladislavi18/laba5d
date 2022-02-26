@@ -64,3 +64,25 @@ void swap(int *a, int *b) {
     *a = *b;
     *b = t;
 }
+
+int cmp_long_long(const void *pa, const void *pb) {
+    long long arg1 = *(const long long *) pa;
+    long long arg2 = *(const long long *) pb;
+
+    if (arg1 <= arg2)
+        return -1;
+    else if (arg1 > arg2)
+        return 1;
+    else
+        return 0;
+}
+
+void selectionSort(int *a, size_t size) {
+    for (size_t i = 0; i < size; i++) {
+        int minPos = i;
+        for (size_t j = i + 1; j < size; j++)
+            if (a[j] < a[minPos])
+                minPos = j;
+        swap(&a[minPos], &a[i]);
+    }
+}
